@@ -172,7 +172,11 @@ local function restore_old()
 	--[[
 		If we know the previous modes, restore them
 	]]--
-	local modesfile = assert(io.open(MODESFILE, "r"), "Missing modes backup")
+       local modesfile = io.open(MODESFILE, "r")
+       if not modesfile then
+               -- nothing was ever saved
+               return
+       end
 
 	local old_modes = {}
 	while true do
