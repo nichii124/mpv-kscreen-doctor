@@ -89,7 +89,7 @@ local function get_available()
 		table.insert(valid_modes, { output = output, modes = good_modes })
 	end
 
-	-- save the modes if noone already did
+       -- save the modes if no one already did
 	local modesfile = io.open(MODESFILE, "r")
 	if not modesfile then
 		-- there is nothing saved yet
