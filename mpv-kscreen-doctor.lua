@@ -179,18 +179,19 @@ local function restore_old()
        end
 
 	local old_modes = {}
-	while true do
-		local output, mode = modesfile:read("*n", "*n")
-		if not output then
-			break
-		end
-		old_modes[output] = mode
-	end
+        while true do
+                local output, mode = modesfile:read("*n", "*n")
+                if not output then
+                        break
+                end
+                old_modes[output] = mode
+        end
+        modesfile:close()
 
-	if is_empty(old_modes) then
-		-- we don't have a saved rate, nothing to do
-		return
-	end
+        if is_empty(old_modes) then
+                -- we don't have a saved rate, nothing to do
+                return
+        end
 
 	msg.info("Restoring previous modes")
 	kscreen_doctor_set_mode(old_modes)
