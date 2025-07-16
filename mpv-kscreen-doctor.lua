@@ -1,7 +1,7 @@
 --[[
 	mpv-kscreen-doctor
 
-	Use kscreen-doctor to find the best display fps when playing a video
+Use kscreen-doctor to adjust the display's refresh rate to match the video's frame rate
 
 	Author: Nicola Smaniotto <smaniotto.nicola@gmail.com>
 	Version: 0.2.2
