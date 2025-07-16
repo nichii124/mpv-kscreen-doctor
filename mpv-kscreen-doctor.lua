@@ -1,7 +1,7 @@
 --[[
 	mpv-kscreen-doctor
 
-	Use kscreen-doctor to find the best display fps when playing a video
+Use kscreen-doctor to adjust the display's refresh rate to match the video's frame rate
 
 	Author: Nicola Smaniotto <smaniotto.nicola@gmail.com>
 	Version: 0.2.2
@@ -89,7 +89,7 @@ local function get_available()
 		table.insert(valid_modes, { output = output, modes = good_modes })
 	end
 
-	-- save the modes if noone already did
+       -- save the modes if no one already did
 	local modesfile = io.open(MODESFILE, "r")
 	if not modesfile then
 		-- there is nothing saved yet
@@ -179,18 +179,19 @@ local function restore_old()
        end
 
 	local old_modes = {}
-	while true do
-		local output, mode = modesfile:read("*n", "*n")
-		if not output then
-			break
-		end
-		old_modes[output] = mode
-	end
+        while true do
+                local output, mode = modesfile:read("*n", "*n")
+                if not output then
+                        break
+                end
+                old_modes[output] = mode
+        end
+        modesfile:close()
 
-	if is_empty(old_modes) then
-		-- we don't have a saved rate, nothing to do
-		return
-	end
+        if is_empty(old_modes) then
+                -- we don't have a saved rate, nothing to do
+                return
+        end
 
 	msg.info("Restoring previous modes")
 	kscreen_doctor_set_mode(old_modes)
